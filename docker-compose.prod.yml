@@ -9,14 +9,14 @@ services:
     ports:
       - $PROXY_PORT:80
     depends_on:
-      - auth-service
+      - auth-keycloak-acl
       - employee-service
       - time-record-service
     networks:
       - timeclock
 
-  auth-service:
-    image: ghcr.io/c-4u/auth-service:latest
+  auth-keycloak-acl:
+    image: ghcr.io/c-4u/auth-keycloak-acl:latest
     environment:
       KEYCLOAK_BASE_PATH: $KEYCLOAK_BASE_PATH
       KEYCLOAK_REALM: $KEYCLOAK_REALM
@@ -24,9 +24,9 @@ services:
       KEYCLOAK_CLIENT_SECRET: $KEYCLOAK_CLIENT_SECRET
       KEYCLOAK_AUDIENCE: $KEYCLOAK_AUDIENCE
       ELASTIC_APM_SERVER_URL: $ELASTIC_APM_SERVER_URL
-      ELASTIC_APM_SERVICE_NAME: auth-service
+      ELASTIC_APM_SERVICE_NAME: auth-keycloak-acl
     volumes:
-      - ../auth-service:/go/src/
+      - ../auth-keycloak-acl:/go/src/
     ports:
       - 8088:8080
     depends_on:
