@@ -1,9 +1,9 @@
 [submodule "services/employee-service"]
 	path = services/employee-service
 	url = git@github.com:c-4u/employee-service.git
-[submodule "services/auth-service"]
-	path = services/auth-service
-	url = git@github.com:c-4u/auth-service.git
+[submodule "services/auth-keycloak-acl"]
+	path = services/auth-keycloak-acl
+	url = git@github.com:c-4u/auth-keycloak-acl.git
 [submodule "services/time-record-service"]
 	path = services/time-record-service
 	url = git@github.com:c-4u/time-record-service.git
