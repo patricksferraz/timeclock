@@ -75,6 +75,26 @@ services:
     extra_hosts:
       - 'host.docker.internal:172.17.0.1'
 
+  company-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      ENV: dev
+      ELASTIC_APM_SERVICE_NAME: company-service
+    ports:
+      - $COMPANY_GRPC_PORT:50051
+      - $COMPANY_REST_PORT:8080
+    volumes:
+      # - service/company-service:/go/src/
+      - ../company-service:/go/src/
+    depends_on:
+      - postgres
+    networks:
+      - timeclock
+    extra_hosts:
+      - 'host.docker.internal:172.17.0.1'
+
   keycloak:
     image: quay.io/keycloak/keycloak:latest
     environment:
@@ -110,19 +130,6 @@ services:
       - $DB_PORT:5432
     networks:
       - timeclock
-
-  # pgadmin:
-  #   image: dpage/pgadmin4
-  #   tty: true
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: $PGADMIN_DEFAULT_EMAIL
-  #     PGADMIN_DEFAULT_PASSWORD: $PGADMIN_DEFAULT_PASSWORD
-  #   ports:
-  #     - 9000:80
-  #   depends_on:
-  #     - postgres
-  #   networks:
-  #     - timeclock
 
   adminer:
     image: adminer
@@ -223,6 +230,7 @@ services:
         kafka-topics --create --topic=NEW_EMPLOYEE --if-not-exists --bootstrap-server=kafka:9092 &&
         kafka-topics --create --topic=UPDATE_EMPLOYEE --if-not-exists --bootstrap-server=kafka:9092 &&
         kafka-topics --create --topic=NEW_USER --if-not-exists --bootstrap-server=kafka:9092 &&
+        kafka-topics --create --topic=NEW_COMPANY --if-not-exists --bootstrap-server=kafka:9092
         "
     networks:
       - timeclock

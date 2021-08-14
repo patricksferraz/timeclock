@@ -10,3 +10,6 @@
 	path = services/time-record-service
 	url = git@github.com:c-4u/time-record-service.git
 	ignore = dirty
+[submodule "services/company-service"]
+	path = services/company-service
+	url = git@github.com:c-4u/company-service.git
