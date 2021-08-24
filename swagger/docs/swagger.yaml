@@ -1,0 +1,1147 @@
+basePath: /api/v1
+definitions:
+  auth-keycloak-acl_application_rest.HTTPError:
+    properties:
+      code:
+        example: 400
+        type: integer
+      error:
+        example: status bad request
+        type: string
+    type: object
+  auth-keycloak-acl_application_rest.HTTPResponse:
+    properties:
+      code:
+        example: 200
+        type: integer
+      message:
+        example: a message
+        type: string
+    type: object
+  company-service_application_rest.HTTPError:
+    properties:
+      code:
+        example: 400
+        type: integer
+      error:
+        example: status bad request
+        type: string
+    type: object
+  company-service_application_rest.HTTPResponse:
+    properties:
+      code:
+        example: 200
+        type: integer
+      message:
+        example: a message
+        type: string
+    type: object
+  employee-service_application_rest.HTTPError:
+    properties:
+      code:
+        example: 400
+        type: integer
+      error:
+        example: status bad request
+        type: string
+    type: object
+  employee-service_application_rest.HTTPResponse:
+    properties:
+      code:
+        example: 200
+        type: integer
+      message:
+        example: a message
+        type: string
+    type: object
+  rest.AccessToken:
+    properties:
+      access_token:
+        type: string
+    required:
+    - access_token
+    type: object
+  rest.Auth:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  rest.Claims:
+    properties:
+      employee_id:
+        type: string
+      roles:
+        items:
+          type: string
+        type: array
+      user_id:
+        type: string
+      username:
+        type: string
+    type: object
+  rest.Company:
+    properties:
+      cnpj:
+        type: string
+      corporate_name:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      trade_name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  rest.CreateCompanyRequest:
+    properties:
+      cnpj:
+        type: string
+      corporate_name:
+        type: string
+      trade_name:
+        type: string
+    required:
+    - cnpj
+    - corporate_name
+    - trade_name
+    type: object
+  rest.CreateCompanyResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  rest.CreateEmployeeRequest:
+    properties:
+      company_id:
+        type: string
+      cpf:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      pis:
+        type: string
+    required:
+    - company_id
+    - cpf
+    - email
+    - first_name
+    - last_name
+    - pis
+    type: object
+  rest.CreateEmployeeResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  rest.CreateUserRequest:
+    properties:
+      employee_id:
+        type: string
+      username:
+        type: string
+    required:
+    - employee_id
+    - username
+    type: object
+  rest.CreateUserResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  rest.Employee:
+    properties:
+      company_id:
+        type: string
+      cpf:
+        type: string
+      created_at:
+        type: string
+      email:
+        type: string
+      enabled:
+        type: boolean
+      first_name:
+        type: string
+      id:
+        type: string
+      last_name:
+        type: string
+      pis:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  rest.ExportTimeRecordsResponse:
+    properties:
+      next_page_token:
+        type: string
+      registers:
+        items:
+          type: string
+        type: array
+    type: object
+  rest.JWT:
+    properties:
+      access_token:
+        type: string
+      expires_in:
+        type: integer
+      id_token:
+        type: string
+      not_before_policy:
+        type: integer
+      refresh_expires_in:
+        type: integer
+      refresh_token:
+        type: string
+      scope:
+        type: string
+      session_state:
+        type: string
+      token_type:
+        type: string
+    type: object
+  rest.RefreshToken:
+    properties:
+      refresh_token:
+        type: string
+    required:
+    - refresh_token
+    type: object
+  rest.RefuseTimeRecordRequest:
+    properties:
+      refused_reason:
+        type: string
+    required:
+    - refused_reason
+    type: object
+  rest.RegisterTimeRecordRequest:
+    properties:
+      description:
+        type: string
+      employee_id:
+        type: string
+      time:
+        type: string
+    required:
+    - employee_id
+    - time
+    type: object
+  rest.RegisterTimeRecordResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  rest.SearchCompaniesResponse:
+    properties:
+      companies:
+        items:
+          $ref: '#/definitions/rest.Company'
+        type: array
+      next_page_token:
+        type: string
+    type: object
+  rest.SearchEmployeesResponse:
+    properties:
+      employees:
+        items:
+          $ref: '#/definitions/rest.Employee'
+        type: array
+      next_page_token:
+        type: string
+    type: object
+  rest.SearchTimeRecordsResponse:
+    properties:
+      next_page_token:
+        type: string
+      time_records:
+        items:
+          $ref: '#/definitions/rest.TimeRecord'
+        type: array
+    type: object
+  rest.SetPasswordRequest:
+    properties:
+      password:
+        type: string
+      temporary:
+        default: false
+        type: boolean
+    required:
+    - password
+    type: object
+  rest.TimeRecord:
+    properties:
+      approved_by:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      description:
+        type: string
+      employee_id:
+        type: string
+      id:
+        type: string
+      refused_by:
+        type: string
+      refused_reason:
+        type: string
+      regular_time:
+        type: boolean
+      status:
+        type: integer
+      time:
+        type: string
+      tz_offset:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+  rest.UpdateCompanyRequest:
+    properties:
+      corporate_name:
+        type: string
+      trade_name:
+        type: string
+    type: object
+  rest.UpdateEmployeeRequest:
+    properties:
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+    type: object
+  rest.User:
+    properties:
+      created_at:
+        type: string
+      employee_id:
+        type: string
+      enabled:
+        type: boolean
+      id:
+        type: string
+      username:
+        type: string
+    type: object
+  time-record-service_application_rest.HTTPError:
+    properties:
+      code:
+        example: 400
+        type: integer
+      error:
+        example: status bad request
+        type: string
+    type: object
+  time-record-service_application_rest.HTTPResponse:
+    properties:
+      code:
+        example: 200
+        type: integer
+      message:
+        example: a message
+        type: string
+    type: object
+info:
+  contact:
+    email: contato@coding4u.com.br
+    name: Coding4u
+  description: Swagger API for Golang Project Timeclock.
+  termsOfService: http://swagger.io/terms/
+  title: Timeclock Swagger API
+  version: "1.0"
+paths:
+  /auth/claims:
+    post:
+      consumes:
+      - application/json
+      description: Get Claims by access token
+      operationId: findClaimsByToken
+      parameters:
+      - description: JSON body for get claims
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/rest.AccessToken'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/rest.Claims'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/auth-keycloak-acl_application_rest.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/auth-keycloak-acl_application_rest.HTTPError'
+      summary: get claims
+      tags:
+      - Auth
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: System authentication
+      operationId: login
+      parameters:
+      - description: JSON body for authentication
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/rest.Auth'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/rest.JWT'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/auth-keycloak-acl_application_rest.HTTPError'
+      summary: log in
+      tags:
+      - Auth
+  /auth/refresh-token:
+    post:
+      consumes:
+      - application/json
+      description: Refresh token route
+      operationId: refreshToken
+      parameters:
+      - description: JSON body for refresh token
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/rest.RefreshToken'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/rest.JWT'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/auth-keycloak-acl_application_rest.HTTPError'
+      summary: refresh token
+      tags:
+      - Auth
+  /companies:
+    get:
+      consumes:
+      - application/json
+      description: Search companies by `filter`. if the page size is empty, 10 will
+        be considered.
+      operationId: searchCompanies
+      parameters:
+      - in: query
+        name: cnpj
+        type: string
+      - in: query
+        name: corporate_name
+        type: string
+      - default: 10
+        in: query
+        name: page_size
+        type: integer
+      - in: query
+        name: page_token
+        type: string
+      - in: query
+        name: trade_name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/rest.SearchCompaniesResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/company-service_application_rest.HTTPError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/company-service_application_rest.HTTPError'
+      security:
+      - ApiKeyAuth: []
+      summary: search companies by filter
+      tags:
+      - Company
+    post:
+      consumes:
+      - application/json
+      description: create company
+      operationId: createCompany
+      parameters:
+      - description: JSON body to create a new company
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/rest.CreateCompanyRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/rest.CreateCompanyResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/company-service_application_rest.HTTPError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/company-service_application_rest.HTTPError'
+      security:
+      - ApiKeyAuth: []
+      summary: create a company
+      tags:
+      - Company
+  /companies/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Router for find a company
+      operationId: findCompany
+      parameters:
+      - description: Company ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/rest.Company'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/company-service_application_rest.HTTPError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/company-service_application_rest.HTTPError'
+      security:
+      - ApiKeyAuth: []
+      summary: find a company
+      tags:
+      - Company
+    put:
+      consumes:
+      - application/json
+      description: Router for update a company
+      operationId: updateCompany
+      parameters:
+      - description: Company ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: JSON body to update a new company
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/rest.UpdateCompanyRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/company-service_application_rest.HTTPResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/company-service_application_rest.HTTPError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/company-service_application_rest.HTTPError'
+      security:
+      - ApiKeyAuth: []
+      summary: update a Company
+      tags:
+      - Company
+  /employees:
+    get:
+      consumes:
+      - application/json
+      description: Search for employee employees by `filter`. if the page size is
+        empty, 10 will be considered.
+      operationId: searchEmployees
+      parameters:
+      - in: query
+        name: first_name
+        type: string
+      - in: query
+        name: last_name
+        type: string
+      - default: 10
+        in: query
+        name: page_size
+        type: integer
+      - in: query
+        name: page_token
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/rest.SearchEmployeesResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/employee-service_application_rest.HTTPError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/employee-service_application_rest.HTTPError'
+      security:
+      - ApiKeyAuth: []
+      summary: search employees by filter
+      tags:
+      - Employee
+    post:
+      consumes:
+      - application/json
+      description: create employee
+      operationId: createEmployee
+      parameters:
+      - description: JSON body to create a new employee
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/rest.CreateEmployeeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/rest.CreateEmployeeResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/employee-service_application_rest.HTTPError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/employee-service_application_rest.HTTPError'
+      security:
+      - ApiKeyAuth: []
+      summary: create a employee
+      tags:
+      - Employee
+  /employees/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Router for find a employee
+      operationId: findEmployee
+      parameters:
+      - description: Employee ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/rest.Employee'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/employee-service_application_rest.HTTPError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/employee-service_application_rest.HTTPError'
+      security:
+      - ApiKeyAuth: []
+      summary: find a employee
+      tags:
+      - Employee
+    put:
+      consumes:
+      - application/json
+      description: Router for update a employee
+      operationId: updateEmployee
+      parameters:
+      - description: Employee ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: JSON body to update a new employee
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/rest.UpdateEmployeeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/employee-service_application_rest.HTTPResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/employee-service_application_rest.HTTPError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/employee-service_application_rest.HTTPError'
+      security:
+      - ApiKeyAuth: []
+      summary: update a employee
+      tags:
+      - Employee
+  /time-records:
+    get:
+      consumes:
+      - application/json
+      description: Search for employee time records by `filter`
+      operationId: searchTimeRecords
+      parameters:
+      - in: query
+        name: approved_by
+        type: string
+      - in: query
+        name: created_by
+        type: string
+      - in: query
+        name: employee_id
+        type: string
+      - in: query
+        name: from_date
+        type: string
+      - default: 10
+        in: query
+        name: page_size
+        type: integer
+      - in: query
+        name: page_token
+        type: string
+      - in: query
+        name: refused_by
+        type: string
+      - in: query
+        name: status
+        type: integer
+      - in: query
+        name: to_date
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/rest.SearchTimeRecordsResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/time-record-service_application_rest.HTTPError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/time-record-service_application_rest.HTTPError'
+      security:
+      - ApiKeyAuth: []
+      summary: search time records by filter
+      tags:
+      - Time Record
+    post:
+      consumes:
+      - application/json
+      description: Router for registration a new time record
+      operationId: registerTimeRecord
+      parameters:
+      - description: JSON body for register a new time record
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/rest.RegisterTimeRecordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/rest.RegisterTimeRecordResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/time-record-service_application_rest.HTTPError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/time-record-service_application_rest.HTTPError'
+      security:
+      - ApiKeyAuth: []
+      summary: register a new time record
+      tags:
+      - Time Record
+  /time-records/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Router for find a time record
+      operationId: findTimeRecord
+      parameters:
+      - description: Time Record ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/rest.TimeRecord'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/time-record-service_application_rest.HTTPError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/time-record-service_application_rest.HTTPError'
+      security:
+      - ApiKeyAuth: []
+      summary: find a time record
+      tags:
+      - Time Record
+  /time-records/{id}/approve:
+    post:
+      consumes:
+      - application/json
+      description: Router for approve a pending time record
+      operationId: approveTimeRecord
+      parameters:
+      - description: Time Record ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/time-record-service_application_rest.HTTPResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/time-record-service_application_rest.HTTPError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/time-record-service_application_rest.HTTPError'
+      security:
+      - ApiKeyAuth: []
+      summary: approve a pending time record
+      tags:
+      - Time Record
+  /time-records/{id}/refuse:
+    post:
+      consumes:
+      - application/json
+      description: Router for refuse a pending time record
+      operationId: refuseTimeRecord
+      parameters:
+      - description: Time Record ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: JSON body for refuse a pending time record
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/rest.RefuseTimeRecordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/time-record-service_application_rest.HTTPResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/time-record-service_application_rest.HTTPError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/time-record-service_application_rest.HTTPError'
+      security:
+      - ApiKeyAuth: []
+      summary: refuse a pending time record
+      tags:
+      - Time Record
+  /time-records/export:
+    get:
+      consumes:
+      - application/json
+      description: Export for employee time records by `filter`
+      operationId: exportTimeRecords
+      parameters:
+      - in: query
+        name: approved_by
+        type: string
+      - default: false
+        in: query
+        name: as_file
+        type: boolean
+      - in: query
+        name: created_by
+        type: string
+      - in: query
+        name: employee_id
+        type: string
+      - in: query
+        name: from_date
+        type: string
+      - default: 10
+        in: query
+        name: page_size
+        type: integer
+      - in: query
+        name: page_token
+        type: string
+      - in: query
+        name: refused_by
+        type: string
+      - in: query
+        name: status
+        type: integer
+      - in: query
+        name: to_date
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/rest.ExportTimeRecordsResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/time-record-service_application_rest.HTTPError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/time-record-service_application_rest.HTTPError'
+      security:
+      - ApiKeyAuth: []
+      summary: export time records by filter
+      tags:
+      - Time Record
+  /users:
+    get:
+      consumes:
+      - application/json
+      description: Search users by `filter`. if the page and page size are empty,
+        0 and 10 will be considered respectively.
+      operationId: searchUsers
+      parameters:
+      - in: query
+        name: enabled
+        type: boolean
+      - default: 0
+        in: query
+        name: page
+        type: integer
+      - default: 10
+        in: query
+        name: page_size
+        type: integer
+      - in: query
+        name: username
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/rest.User'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/auth-keycloak-acl_application_rest.HTTPError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/auth-keycloak-acl_application_rest.HTTPError'
+      security:
+      - ApiKeyAuth: []
+      summary: search users by filter
+      tags:
+      - User
+    post:
+      consumes:
+      - application/json
+      description: Create User
+      operationId: createUser
+      parameters:
+      - description: JSON body for create user
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/rest.CreateUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/rest.CreateUserResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/auth-keycloak-acl_application_rest.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/auth-keycloak-acl_application_rest.HTTPError'
+      security:
+      - ApiKeyAuth: []
+      summary: create user
+      tags:
+      - User
+  /users/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Router for find user
+      operationId: findUser
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/rest.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/auth-keycloak-acl_application_rest.HTTPError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/auth-keycloak-acl_application_rest.HTTPError'
+      security:
+      - ApiKeyAuth: []
+      summary: find user
+      tags:
+      - User
+  /users/{id}/password:
+    post:
+      consumes:
+      - application/json
+      description: Set user password
+      operationId: setPassword
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: JSON body set user password
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/rest.SetPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth-keycloak-acl_application_rest.HTTPResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/auth-keycloak-acl_application_rest.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/auth-keycloak-acl_application_rest.HTTPError'
+      security:
+      - ApiKeyAuth: []
+      summary: set user password
+      tags:
+      - User
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
