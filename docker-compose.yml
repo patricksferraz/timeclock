@@ -243,7 +243,8 @@ services:
         kafka-topics --create --topic=UPDATE_EMPLOYEE --if-not-exists --bootstrap-server=kafka:9092 &&
         kafka-topics --create --topic=NEW_USER --if-not-exists --bootstrap-server=kafka:9092 &&
         kafka-topics --create --topic=NEW_COMPANY --if-not-exists --bootstrap-server=kafka:9092 &&
-        kafka-topics --create --topic=ADD_EMPLOYEE_TO_COMPANY --if-not-exists --bootstrap-server=kafka:9092
+        kafka-topics --create --topic=ADD_EMPLOYEE_TO_COMPANY --if-not-exists --bootstrap-server=kafka:9092 &&
+        kafka-topics --create --topic=NEW_TIME_RECORD --if-not-exists --bootstrap-server=kafka:9092
         "
     networks:
       - timeclock
