@@ -279,6 +279,63 @@ var doc = `{
                 }
             }
         },
+        "/companies/{company_id}/employee/{employee_id}": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Router for add employee to company",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Company"
+                ],
+                "summary": "add employee to company",
+                "operationId": "addEmployeeToCompany",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Company ID",
+                        "name": "company_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Employee ID",
+                        "name": "employee_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/company-service_application_rest.HTTPResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/company-service_application_rest.HTTPError"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/company-service_application_rest.HTTPError"
+                        }
+                    }
+                }
+            }
+        },
         "/companies/{id}": {
             "get": {
                 "security": [
@@ -1415,7 +1472,6 @@ var doc = `{
         "rest.CreateEmployeeRequest": {
             "type": "object",
             "required": [
-                "company_id",
                 "cpf",
                 "email",
                 "first_name",
@@ -1423,9 +1479,6 @@ var doc = `{
                 "pis"
             ],
             "properties": {
-                "company_id": {
-                    "type": "string"
-                },
                 "cpf": {
                     "type": "string"
                 },
@@ -1477,8 +1530,11 @@ var doc = `{
         "rest.Employee": {
             "type": "object",
             "properties": {
-                "company_id": {
-                    "type": "string"
+                "companies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "cpf": {
                     "type": "string"
