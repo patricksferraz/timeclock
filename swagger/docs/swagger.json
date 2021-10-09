@@ -100,6 +100,47 @@
                 }
             }
         },
+        "/auth/logout": {
+            "post": {
+                "description": "Logout",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "logout",
+                "operationId": "logout",
+                "parameters": [
+                    {
+                        "description": "JSON body for Logout",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/rest.RefreshToken"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/auth-keycloak-acl_application_rest.HTTPResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/auth-keycloak-acl_application_rest.HTTPError"
+                        }
+                    }
+                }
+            }
+        },
         "/auth/refresh-token": {
             "post": {
                 "description": "Refresh token route",
@@ -678,6 +719,11 @@
                     },
                     {
                         "type": "string",
+                        "name": "company_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
                         "name": "created_by",
                         "in": "query"
                     },
@@ -822,6 +868,11 @@
                         "type": "boolean",
                         "default": false,
                         "name": "as_file",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "company_id",
                         "in": "query"
                     },
                     {
@@ -1620,10 +1671,14 @@
         "rest.RegisterTimeRecordRequest": {
             "type": "object",
             "required": [
+                "company_id",
                 "employee_id",
                 "time"
             ],
             "properties": {
+                "company_id": {
+                    "type": "string"
+                },
                 "description": {
                     "type": "string"
                 },
@@ -1704,6 +1759,9 @@
             "type": "object",
             "properties": {
                 "approved_by": {
+                    "type": "string"
+                },
+                "company_id": {
                     "type": "string"
                 },
                 "created_at": {
