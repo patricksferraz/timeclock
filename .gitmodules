@@ -13,3 +13,6 @@
 [submodule "services/company-service"]
 	path = services/company-service
 	url = git@github.com:c-4u/company-service.git
+[submodule "services/timecard-service"]
+	path = services/timecard-service
+	url = git@github.com:c-4u/timecard-service.git
