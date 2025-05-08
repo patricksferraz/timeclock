@@ -1,4 +1,4 @@
-module github.com/c-4u/timeclock/swagger
+module github.com/patricksferraz/timeclock/swagger
 
 go 1.16
 
